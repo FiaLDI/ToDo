@@ -17,37 +17,43 @@ document.addEventListener('click', (e) => {
     }
 })
 
-const modal2 = document.querySelector('#dialog2')
-const modalBox2 = document.getElementById('modal-box2')
-const showModalBtn2 = document.getElementById('init_change_do')
+// Redact
+
+const modals = document.querySelectorAll('.dial')
+const modalBoxs = document.querySelectorAll('.modal-boxs')
+const showModalBtnS = document.getElementById('init_change_do')
 const checkboxs = document.querySelectorAll('.todo-select')
+let curModal = 0 
 
 let isModalOpen2 = false
 
-showModalBtn2.addEventListener('click', (e) => {
+showModalBtnS.addEventListener('click', (e) => {
+    e.preventDefault()
     let CountActive = 0
     checkboxs.forEach((val) => {
         if (val.checked) {
             CountActive += 1
-            console.log(val.id)
+            curModal = Number(val.name)
         }
         
     })
-    if (CountActive < 2) {
-        modal2.showModal()
-        isModalOpen2 = true
-        e.stopPropagation()
-        e.preventDefault()
-    }
+    if (CountActive == 1) {
+        modals[curModal].showModal()
+        isModalOpen = true
+        e.stopPropagation() 
+    } 
     
+   
 })
 
 document.addEventListener('click', (e) => {
-    if (isModalOpen2 && !modalBox2.contains(e.target)) {
-        modal2.close()
+    if (isModalOpen2 && !modals[curModal].contains(e.target)) {
+        modals[curModal].close()
     }
 })
 
+
+// Remove
 let init_remove = document.getElementById('init_remove_do');
 init_remove.value = 0
 
@@ -61,3 +67,18 @@ init_remove.addEventListener('click', (e) => {
     init_remove.value = rem
     e.stopPropagation()
 })
+
+// const form = document.querySelector('form');
+
+// form.addEventListener('submit', () => {
+//   const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+//   const query = [...checkboxes]
+//     .filter(checkbox => checkbox.checked)
+//     .map(checkbox => checkbox.name)
+//     .join('+')
+//   const url = 'https://example.ru/search/' + query;
+
+//   // not working in sandbox
+//   // window.location.href = url;
+//   alert('redirect to ' + url);
+// })

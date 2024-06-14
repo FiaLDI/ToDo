@@ -33,6 +33,7 @@ ul {
     gap: 1em;
     border: 1px solid rgba(0,0,0,0.2);
     padding: 1em;
+    margin: 1em;
 }
 
 .form_change {
@@ -58,6 +59,11 @@ ul {
 .create_do {
     display: flex;
     gap: 2em;
+}
+
+.button-container {
+    display: flex;
+    justify-content: end;
 }
 
 .input-container,.time-container {
