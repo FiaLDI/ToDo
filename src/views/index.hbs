@@ -21,15 +21,15 @@
             {{/each}}
             <div class="button-container">
                 <form action="" method="post">
-                <button class="button_change" id="init_create_do">         
-                    ADD
-                </button>
-                <button class="button_change" id="init_change_do">         
-                    RED
-                </button>
-                
+                    <button class="button_change" id="init_create_do">         
+                        Добавить задачу
+                    </button>
+                    <button class="button_change" id="init_change_do">         
+                        Изменить задачу
+                    </button>
+                    
                     <button class="button_change" id="init_remove_do" name="remove_do" value="">         
-                        DEL
+                        Удалить задачу
                     </button>
                 </form>
                 
@@ -66,13 +66,38 @@
             <button type="submit" class="form-sub-1" name="create_do" value="true">Добавить задачу</button>
         </form>
     </dialog>
-    <dialog id="dialog2">
-        <form class="che" id="modal-box2" method="post">
-            
-
-            dsfdsfsdfsd
-        </form>
+    {{#each toDo}}
+    <dialog id="dialogs-{{this.id}}" name="{{this.id}}" class="dial">
+        <form class="create_do" id="modal-box" method="post">
+                <div class="input-container container-re">
+                    <div class="input-container">
+                        <h3 class="create_do_text_form">Название задачи</h3> <input type="text" name="add_text" required value="{{this.name}}">
+                    </div>
+                    <div class="input-container input-container-time">
+                        <div class="time-container">
+                            <h3 class="create_do_text_form">Начало</h3>
+                            <input type="date" name="date_start" id="" value="{{this.date_start}}">
+                            <input type="time" name="time_start" required value="{{this.time_start}}">
+                        </div>
+                        <div class="time-container">
+                            <h3 class="create_do_text_form">Конец</h3>
+                            <input type="date" name="date_end" id="" required value="{{this.date_end}}">
+                            <input type="time" name="time_end" required value="{{this.time_end}}">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="input-container">
+                    <h3 class="create_do_text_form">Описание</h3>
+                    <div class="text-area-container">
+                        <textarea name="description" id="" aria-disabled="true" required>{{this.description}}</textarea>
+                    </div>
+                    
+                </div>
+                <button type="submit" class="form-sub-1" name="change_do" value="{{this.id}}">Изменить задачу</button>
+            </form>
     </dialog>
+    {{/each}}
     <script src="app/script.js"></script>
 </body>
 </html>
